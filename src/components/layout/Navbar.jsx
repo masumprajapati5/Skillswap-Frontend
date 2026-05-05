@@ -109,8 +109,8 @@ const Navbar = ({ unreadCount, pendingSessionsCount, notificationsCount }) => {
 
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center gap-8">
-          <Link to="/explore" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline">Explore</Link>
+        <div className="fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center gap-6 sm:gap-8 px-6">
+          <Link to="/explore" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium">Explore</Link>
           {isAuthenticated ? (
             user?.role === 'admin' ? (
               <>
@@ -125,26 +125,26 @@ const Navbar = ({ unreadCount, pendingSessionsCount, notificationsCount }) => {
               </>
             ) : (
               <>
-                <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline">Dashboard</Link>
-                <Link to="/sessions" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline relative">
+                <Link to="/dashboard" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium">Dashboard</Link>
+                <Link to="/sessions" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium relative">
                   Sessions
                   {pendingSessionsCount > 0 && <span className="absolute top-0 -right-5 w-5 h-5 bg-black text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white font-black">{pendingSessionsCount}</span>}
                 </Link>
-                <Link to="/messages" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline relative">
+                <Link to="/messages" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium relative">
                   Messages
                   {unreadCount > 0 && <span className="absolute top-0 -right-5 w-5 h-5 bg-black text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white font-black">{unreadCount}</span>}
                 </Link>
-                <Link to="/notifications" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline relative">
+                <Link to="/notifications" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium relative">
                   Notifications
                   {notificationsCount > 0 && <span className="absolute top-0 -right-5 w-5 h-5 bg-black text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white font-black">{notificationsCount}</span>}
                 </Link>
-                <Link to="/wallet" onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline flex items-center gap-3">
+                <Link to="/wallet" onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium flex items-center gap-3">
                   Wallet <span className="text-sm bg-black text-white px-3 py-1 rounded-full font-bold">{user?.credits || 0}</span>
                 </Link>
-                <Link to={`/profile/${user?._id}`} onClick={() => setIsMenuOpen(false)} className="text-2xl text-black no-underline">Profile</Link>
+                <Link to={`/profile/${user?._id}`} onClick={() => setIsMenuOpen(false)} className="text-xl sm:text-2xl text-black no-underline font-medium">Profile</Link>
                 <button 
                   onClick={handleLogout}
-                  className="text-2xl text-red-500 font-medium bg-transparent border-none"
+                  className="text-xl sm:text-2xl text-red-500 font-bold bg-transparent border-none mt-4"
                 >
                   Log Out
                 </button>

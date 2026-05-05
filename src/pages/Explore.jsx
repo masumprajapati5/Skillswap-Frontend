@@ -105,21 +105,21 @@ const Explore = () => {
   };
 
   return (
-    <div className="py-12 px-6 max-w-[1200px] mx-auto min-h-screen">
-      <div className="mb-12">
-        <h1 className="text-[32px] font-bold text-[#37352F] mb-1 tracking-tight">Explore Experts</h1>
-        <p className="text-[#37352F]/60 font-medium">Discover new expertise across the global network.</p>
+    <div className="py-8 sm:py-12 px-6 max-w-[1200px] mx-auto min-h-screen">
+      <div className="mb-8 sm:mb-12 text-center sm:text-left">
+        <h1 className="text-[28px] sm:text-[32px] font-bold text-[#37352F] mb-1 tracking-tight">Explore Experts</h1>
+        <p className="text-sm sm:text-base text-[#37352F]/60 font-medium">Discover new expertise across the global network.</p>
       </div>
 
       <ProfilePrompt user={currentUser} />
 
       <div className="flex flex-col md:flex-row gap-12">
         {/* Sidebar - Filters */}
-        <aside className="w-full md:w-64 flex-shrink-0 flex flex-col gap-10">
+        <aside className="w-full md:w-64 flex-shrink-0 flex flex-col sm:flex-row md:flex-col gap-6 sm:gap-10">
           
           {/* Sorting Sidebar */}
-          <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-4">Sort By</h3>
+          <div className="flex-1">
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-3 sm:mb-4">Sort By</h3>
             <select 
               value={sortBy} 
               onChange={e => setSortBy(e.target.value)}
@@ -131,8 +131,8 @@ const Explore = () => {
           </div>
 
           {/* Advanced Filters Sidebar */}
-          <div className="flex flex-col gap-6">
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-1">Filters</h3>
+          <div className="flex-1 flex flex-col gap-6">
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-1 hidden sm:block">Filters</h3>
             
             <div className="flex flex-col gap-3">
               <label className="text-[10px] font-black uppercase text-black/30 tracking-tight">Minimum Rating</label>
@@ -244,14 +244,14 @@ const Explore = () => {
                           {u.avatar ? <img src={u.avatar} alt={u.name} className="w-full h-full object-cover" /> : u.name.charAt(0)}
                         </div>
                         <div>
-                          <div className="text-2xl font-bold group-hover:underline tracking-tight">{u.name}</div>
-                          <div className="text-sm text-gray-500 font-bold flex items-center gap-3 mt-1">
+                          <div className="text-xl sm:text-2xl font-bold group-hover:underline tracking-tight">{u.name}</div>
+                          <div className="text-[11px] sm:text-sm text-gray-500 font-bold flex flex-wrap items-center gap-2 sm:gap-3 mt-1">
                              <span className="flex items-center gap-1 text-black/60 bg-[#F7F7F5] px-2 py-0.5 rounded-md">
                                <Star size={12} className="fill-current" /> {u.rating.toFixed(1)}
                              </span>
-                             <span className="text-black/30">·</span>
+                             <span className="text-black/30 hidden sm:inline">·</span>
                              <span>{u.credits} credits</span>
-                             <span className="text-black/30">·</span>
+                             <span className="text-black/30 hidden sm:inline">·</span>
                              <span className="flex items-center gap-1"><MapPin size={12} /> {u.location?.city || 'Remote'}</span>
                           </div>
                         </div>

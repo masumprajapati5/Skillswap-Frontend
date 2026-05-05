@@ -35,11 +35,11 @@ const Wallet = () => {
   const balance = wallet?.balance || 0;
 
   return (
-    <div className="min-h-[85vh] flex flex-col items-center justify-center px-6 py-20 max-w-[1200px] mx-auto">
+    <div className="min-h-[85vh] flex flex-col items-center justify-center px-6 py-12 sm:py-20 max-w-[1200px] mx-auto">
       {/* Header - Centered */}
-      <div className="mb-16 text-center">
-        <h1 className="text-5xl font-medium mb-4 tracking-tight">Wallet</h1>
-        <p className="text-gray-500 text-lg max-w-[500px] mx-auto">Your balance and platform currency status.</p>
+      <div className="mb-10 sm:mb-16 text-center">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Wallet</h1>
+        <p className="text-gray-500 text-base sm:text-lg max-w-[500px] mx-auto font-medium">Your balance and platform currency status.</p>
       </div>
 
       {/* Main Balance Display - Large and Centered */}
@@ -47,9 +47,9 @@ const Wallet = () => {
         <div className={`relative overflow-hidden border ${balance === 0 ? 'border-red-500' : 'border-black'} p-16 rounded-[40px] flex flex-col items-center justify-center gap-4 transition-all bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)]`}>
           {/* Subtle background decoration */}
 
-          <div className="font-outfit text-[11px] text-gray-400 uppercase tracking-[0.3em] mb-2 font-black">TOTAL BALANCE</div>
+          <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-[0.3em] mb-2 font-black">TOTAL BALANCE</div>
 
-          <div className={`text-[120px] font-semibold leading-none tracking-tighter ${balance === 0 ? 'text-red-500' : 'text-black'}`}>
+          <div className={`text-[80px] sm:text-[120px] font-semibold leading-none tracking-tighter ${balance === 0 ? 'text-red-500' : 'text-black'}`}>
             {balance}
           </div>
 

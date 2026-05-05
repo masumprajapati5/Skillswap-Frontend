@@ -74,33 +74,33 @@ const Sessions = () => {
         {filtered.map((s) => {
           const partner = s.requester?._id === user?._id ? s.recipient : s.requester;
           return (
-            <div key={s._id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-10 border-t border-gray-100 first:border-0 gap-6 sm:gap-0 group">
-              <div className="flex gap-6 items-center">
-                <div className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+            <div key={s._id} className="flex flex-col lg:flex-row justify-between items-start lg:items-center py-8 sm:py-10 border-t border-gray-100 first:border-0 gap-6 lg:gap-0 group">
+              <div className="flex gap-4 sm:gap-6 items-center w-full lg:w-auto">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-black text-white rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
                   {partner?.avatar ? <img src={partner.avatar} className="w-full h-full object-cover" /> : partner?.name.charAt(0)}
                 </div>
-                <div>
-                  <div className="text-xl font-semibold mb-1">{s.title || 'Skill Swap Session'}</div>
-                  <div className="font-outfit text-sm text-gray-500">
-                    with {partner?.name} · {new Date(s.scheduledDate).toLocaleDateString()} at {s.scheduledTime || 'TBD'} · {s.duration || 60}min
+                <div className="flex-1">
+                  <div className="text-lg sm:text-xl font-bold mb-1 tracking-tight">{s.title || 'Skill Swap Session'}</div>
+                  <div className="font-outfit text-[12px] sm:text-sm text-gray-500 font-medium leading-relaxed">
+                    with {partner?.name} · {new Date(s.scheduledDate).toLocaleDateString()} at {s.scheduledTime || 'TBD'}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-6 justify-between w-full sm:w-auto">
-                <span className={`text-[11px] font-bold border px-3 py-1 rounded tracking-widest uppercase ${
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full lg:w-auto">
+                <span className={`text-[9px] sm:text-[11px] font-black border px-3 py-1.5 rounded tracking-widest uppercase inline-block ${
                   s.status === 'scheduled' ? 'border-green-500 text-green-500' : 
                   s.status === 'completed' ? 'border-black bg-black text-white' : 'border-black text-black'
                 }`}>
                    {s.status}
                 </span>
-                <div className="flex gap-3">
+                <div className="flex gap-3 w-full sm:w-auto">
                   {s.status === 'scheduled' && (
-                    <Link to={`/video-room/${s._id}`} className="bg-black text-white border border-black px-6 py-2.5 rounded text-[13px] font-bold hover:bg-white hover:text-black transition-all shadow-lg active:scale-95">
-                      Join Call
+                    <Link to={`/video-room/${s._id}`} className="flex-1 sm:flex-initial text-center bg-black text-white border border-black px-6 py-2.5 rounded text-xs font-bold hover:bg-white hover:text-black transition-all shadow-lg active:scale-95 uppercase tracking-widest">
+                      Join
                     </Link>
                   )}
-                  <Link to={`/sessions/${s._id}`} className="bg-white border border-gray-200 text-black px-6 py-2.5 rounded text-[13px] font-medium hover:border-black transition-all shadow-sm">
-                    View Details
+                  <Link to={`/sessions/${s._id}`} className="flex-1 sm:flex-initial text-center bg-white border border-gray-200 text-black px-6 py-2.5 rounded text-xs font-bold hover:border-black transition-all shadow-sm uppercase tracking-widest">
+                    Details
                   </Link>
                 </div>
               </div>

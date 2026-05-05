@@ -78,10 +78,10 @@ const Profile = () => {
         <div className="w-32 h-32 md:w-40 md:h-40 bg-[#F7F7F5] rounded-3xl flex items-center justify-center text-4xl font-bold text-[#37352F] overflow-hidden border border-gray-100 flex-shrink-0">
           {user.avatar ? <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" /> : user.name.charAt(0)}
         </div>
-        <div className="flex-1 text-center md:text-left">
+        <div className="flex-1 text-center md:text-left w-full">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4 mb-4">
             <div>
-              <h1 className="text-[40px] font-bold text-[#37352F] tracking-tight mb-1">{user.name}</h1>
+              <h1 className="text-[32px] sm:text-[40px] font-bold text-[#37352F] tracking-tight mb-1">{user.name}</h1>
               <div className="flex items-center justify-center md:justify-start gap-2 text-gray-400 font-medium text-sm">
                 <MapPin size={14} />
                 <span>{user.location?.city || 'Location not set'}, {user.location?.country || ''}</span>
@@ -96,14 +96,14 @@ const Profile = () => {
             ) : null}
           </div>
           <p className="text-lg text-[#37352F]/80 leading-relaxed mb-8 max-w-[700px]">{user.bio || 'No bio provided yet.'}</p>
-          <div className="flex gap-10 flex-wrap justify-center md:justify-start">
+          <div className="flex gap-6 sm:gap-10 flex-wrap justify-center md:justify-start">
             {[
               { label: 'Rating', value: <span className="flex items-center gap-1"><Star size={14} className="fill-current" /> {(user.rating || 0).toFixed(1)}</span> },
               { label: 'Credits', value: user.credits || 0 },
             ].map((s, i) => (
               <div key={i}>
-                <div className="text-2xl font-bold">{s.value}</div>
-                <div className="text-[11px] font-bold text-black/30 uppercase tracking-widest mt-1">{s.label}</div>
+                <div className="text-xl sm:text-2xl font-bold">{s.value}</div>
+                <div className="text-[10px] font-bold text-black/30 uppercase tracking-widest mt-1">{s.label}</div>
               </div>
             ))}
           </div>

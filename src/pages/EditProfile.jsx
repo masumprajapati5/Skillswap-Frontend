@@ -270,10 +270,10 @@ const EditProfile = () => {
   }
 
   return (
-    <div className="py-20 px-6 max-w-[800px] mx-auto">
-      <div className="mb-14">
-        <h1 className="text-4xl font-medium mb-2">Edit Profile</h1>
-        <p className="text-gray-500 text-lg">Complete your profile to start swapping skills.</p>
+    <div className="py-12 sm:py-20 px-6 max-w-[800px] mx-auto min-h-screen">
+      <div className="mb-10 sm:mb-14 text-center sm:text-left">
+        <h1 className="text-[32px] sm:text-4xl font-bold mb-2 tracking-tight">Edit Profile</h1>
+        <p className="text-gray-500 text-base sm:text-lg">Complete your profile to start swapping skills.</p>
       </div>
 
       {/* Step indicator */}
@@ -402,14 +402,14 @@ const EditProfile = () => {
         )}
 
         {step === 2 && (
-          <div>
+          <div className="w-full">
             <h3 className="text-xl font-semibold mb-2">Your Availability</h3>
-            <p className="text-gray-500 mb-10">Select the time slots when you are typically free for sessions.</p>
-            <div className="flex flex-col gap-6">
+            <p className="text-gray-500 mb-10 text-sm">Select the time slots when you are typically free for sessions.</p>
+            <div className="flex flex-col gap-8">
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
-                <div key={day} className="grid grid-cols-[100px_1fr] items-center gap-4">
-                  <div className="font-outfit text-sm font-bold uppercase tracking-widest text-gray-500">{day}</div>
-                  <div className="flex gap-3 flex-wrap">
+                <div key={day} className="flex flex-col sm:grid sm:grid-cols-[100px_1fr] items-start sm:items-center gap-4 border-b border-gray-50 pb-6 sm:border-0 sm:pb-0">
+                  <div className="font-outfit text-sm font-bold uppercase tracking-widest text-gray-400">{day}</div>
+                  <div className="flex gap-2 sm:gap-3 flex-wrap">
                     {['Morning', 'Afternoon', 'Evening'].map(time => (
                       <button 
                         key={time} 
@@ -418,7 +418,7 @@ const EditProfile = () => {
                           const arr = form.availability.includes(key) ? form.availability.filter(x => x !== key) : [...form.availability, key];
                           setForm({...form, availability: arr});
                         }}
-                        className={`px-4 py-2 rounded border border-gray-200 text-[12px] font-semibold transition-all cursor-pointer ${form.availability.includes(`${day}_${time}`) ? 'bg-black border-black text-white' : 'bg-white text-black hover:border-black'}`}
+                        className={`flex-1 sm:flex-initial px-4 py-2.5 rounded border border-gray-200 text-[11px] font-bold transition-all cursor-pointer uppercase tracking-wider ${form.availability.includes(`${day}_${time}`) ? 'bg-black border-black text-white' : 'bg-white text-black hover:border-black'}`}
                       >
                         {time}
                       </button>

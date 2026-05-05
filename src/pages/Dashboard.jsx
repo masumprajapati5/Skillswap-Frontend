@@ -48,16 +48,16 @@ const Dashboard = () => {
       <ProfilePrompt user={authUser} />
 
       {/* Stats row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
         {[
           { label: 'Credits', value: authUser?.credits || 0, color: (authUser?.credits === 0) ? 'text-red-500' : 'text-[#37352F]' },
           { label: 'Sessions', value: sessions.length },
           { label: 'Rating', value: (authUser?.rating || 0).toFixed(1) },
           { label: 'Matches', value: matches.length },
         ].map((stat, i) => (
-          <div key={i} className="bg-[#F7F7F5] p-6 rounded-xl">
-            <div className="text-[11px] font-bold text-[#37352F]/40 uppercase tracking-widest mb-2">{stat.label}</div>
-            <div className={`text-3xl font-bold ${stat.color || 'text-[#37352F]'}`}>{stat.value}</div>
+          <div key={i} className="bg-[#F7F7F5] p-5 sm:p-6 rounded-xl">
+            <div className="text-[10px] sm:text-[11px] font-bold text-[#37352F]/40 uppercase tracking-widest mb-2">{stat.label}</div>
+            <div className={`text-2xl sm:text-3xl font-bold ${stat.color || 'text-[#37352F]'}`}>{stat.value}</div>
           </div>
         ))}
       </div>
@@ -103,9 +103,9 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-6 justify-between w-full sm:w-auto">
+                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-between w-full sm:w-auto">
                   <span className="text-sm font-bold bg-[#F7F7F5] px-3 py-1 rounded-full text-black/60">★ {(m.rating || 0).toFixed(1)}</span>
-                  <Link to={`/profile/${m._id}`} className="bg-white text-black border border-gray-200 px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition-all active:scale-95 whitespace-nowrap">View Profile</Link>
+                  <Link to={`/profile/${m._id}`} className="w-full sm:w-auto text-center bg-white text-black border border-gray-200 px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition-all active:scale-95 whitespace-nowrap">View Profile</Link>
                 </div>
               </div>
             )) : (

@@ -150,27 +150,27 @@ const VideoRoom = () => {
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden relative">
       {/* Integrated Header Overlay */}
-      <div className="absolute top-0 left-0 w-full p-6 z-20 flex justify-between items-center pointer-events-none">
-        <div className="flex items-center gap-4 bg-black/40 backdrop-blur-xl px-5 py-3 rounded-2xl border border-white/10 pointer-events-auto">
+      <div className="absolute top-0 left-0 w-full p-4 sm:p-6 z-20 flex flex-col sm:flex-row justify-between items-center sm:items-center gap-4 pointer-events-none">
+        <div className="flex items-center gap-4 bg-black/60 backdrop-blur-xl px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl border border-white/10 pointer-events-auto">
           <div className="bg-red-500 w-2 h-2 rounded-full animate-pulse" />
-          <div className="text-sm font-bold tracking-tight">{session.title}</div>
-          <div className="h-4 w-px bg-white/20 mx-2" />
-          <div className="text-[11px] font-bold uppercase tracking-widest opacity-50">Live Session</div>
+          <div className="text-[12px] sm:text-sm font-bold tracking-tight truncate max-w-[150px] sm:max-w-none">{session.title}</div>
+          <div className="h-4 w-px bg-white/20 mx-1 sm:mx-2" />
+          <div className="text-[9px] sm:text-[11px] font-bold uppercase tracking-widest opacity-50">Live</div>
         </div>
         
-        <div className="flex gap-3 pointer-events-auto">
+        <div className="flex gap-2 sm:gap-3 pointer-events-auto">
           <button 
             onClick={handleMarkComplete}
             disabled={actionLoading}
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-2xl active:scale-95"
+            className="bg-green-500 hover:bg-green-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-2xl active:scale-95"
           >
-            {actionLoading ? 'Saving...' : 'Mark Completed'}
+            {actionLoading ? '...' : 'Complete'}
           </button>
           <button 
             onClick={() => navigate(`/sessions/${id}`)}
-            className="bg-white text-black px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all shadow-2xl active:scale-95"
+            className="bg-white text-black px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all shadow-2xl active:scale-95"
           >
-            Exit Room
+            Exit
           </button>
         </div>
       </div>

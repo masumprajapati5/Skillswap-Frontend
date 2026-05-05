@@ -14,11 +14,11 @@ const Landing = () => {
       <section className="pt-20 pb-32 px-6 max-w-[1100px] mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-[44px] md:text-[64px] font-bold leading-[1.1] text-black mb-6 tracking-tight">
-              Exchange skills.<br/>
+            <h1 className="text-[32px] sm:text-[44px] md:text-[64px] font-bold leading-[1.15] text-black mb-6 tracking-tight">
+              Exchange skills.<br className="hidden sm:block"/>
               Grow together.
             </h1>
-            <p className="text-xl text-gray-600 mb-10 max-w-[500px] mx-auto lg:mx-0 font-medium leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-[500px] mx-auto lg:mx-0 font-medium leading-relaxed">
               The workspace for your professional growth. Join the global peer-to-peer network where knowledge is the only currency.
             </p>
             
@@ -98,10 +98,10 @@ const Landing = () => {
       {/* ── SKILLS SECTION ── */}
       <section className="py-24 px-6 bg-[#F6F6F3]">
         <div className="max-w-[1100px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="max-w-[500px]">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Explore the most<br/>in-demand domains.</h2>
-              <p className="text-lg text-gray-600 font-medium leading-relaxed">Join thousands of others mastering these fields today. From technical engineering to creative arts.</p>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 tracking-tight">Explore the most<br className="hidden sm:block"/>in-demand domains.</h2>
+              <p className="text-base sm:text-lg text-gray-600 font-medium leading-relaxed">Join thousands of others mastering these fields today. From technical engineering to creative arts.</p>
             </div>
             <Link to="/explore" className="text-black font-bold flex items-center gap-2 group hover:underline">
               See all skills <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -131,11 +131,11 @@ const Landing = () => {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="py-32 px-6 text-center max-w-[800px] mx-auto">
-        <h2 className="text-[40px] md:text-[60px] font-bold leading-tight mb-8 tracking-tight">
+      <section className="py-24 px-6 text-center max-w-[800px] mx-auto">
+        <h2 className="text-[32px] sm:text-[40px] md:text-[60px] font-bold leading-tight mb-8 tracking-tight">
           Ready to start your journey?
         </h2>
-        <p className="text-xl text-gray-500 mb-12 font-medium">Join the network today and unlock a world of knowledge.</p>
+        <p className="text-lg sm:text-xl text-gray-500 mb-12 font-medium">Join the network today and unlock a world of knowledge.</p>
         <Link to="/auth" className="bg-black text-white px-12 py-4 rounded-xl text-xl font-bold hover:opacity-90 transition-all active:scale-95 shadow-2xl inline-block mb-4">
           Get SkillSwap Free
         </Link>
