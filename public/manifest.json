@@ -1,0 +1,10 @@
+{
+  "name": "SkillSwap",
+  "short_name": "SkillSwap",
+  "description": "Peer-to-peer skill exchange platform where knowledge is the currency.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": []
+}
