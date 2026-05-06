@@ -263,26 +263,26 @@ const EditProfile = () => {
 
   if (loading) {
     return (
-      <div className="py-24 text-center">
+      <div className="py-16 sm:py-24 text-center">
         <p className="text-gray-500 animate-pulse">Loading profile data...</p>
       </div>
     );
   }
 
   return (
-    <div className="py-12 sm:py-20 px-6 max-w-[800px] mx-auto min-h-screen">
-      <div className="mb-10 sm:mb-14 text-center sm:text-left">
-        <h1 className="text-[32px] sm:text-4xl font-bold mb-2 tracking-tight">Edit Profile</h1>
+    <div className="responsive-container" style={{ maxWidth: '800px', paddingTop: 'clamp(2rem, 4vw, 5rem)', paddingBottom: 'clamp(2rem, 4vw, 5rem)' }}>
+      <div className="mb-8 sm:mb-14">
+        <h1 className="text-heading-md mb-2">Edit Profile</h1>
         <p className="text-gray-500 text-base sm:text-lg">Complete your profile to start swapping skills.</p>
       </div>
 
       {/* Step indicator */}
-      <div className="flex gap-6 overflow-x-auto mb-14 border-b border-gray-100 pb-px scrollbar-hide">
+      <div className="flex gap-3 sm:gap-6 overflow-x-auto mb-8 sm:mb-14 border-b border-gray-100 pb-px scrollbar-hide">
         {STEPS.map((s, i) => (
           <div 
             key={i} 
             onClick={() => handleStepChange(i)}
-            className={`py-4 text-[11px] font-bold uppercase tracking-[0.1em] cursor-pointer relative whitespace-nowrap transition-colors ${step === i ? 'text-black' : 'text-gray-400'}`}
+            className={`py-3 sm:py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.1em] cursor-pointer relative whitespace-nowrap transition-colors tap-target ${step === i ? 'text-black' : 'text-gray-400'}`}
           >
             {s}
             {step === i && <div className="absolute bottom-0 left-0 w-full h-[2px] bg-black" />}
@@ -290,41 +290,41 @@ const EditProfile = () => {
         ))}
       </div>
 
-      <div className="min-h-[400px]">
+      <div className="min-h-[300px] sm:min-h-[400px]">
         {step === 0 && (
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 sm:gap-10">
             <div className="flex flex-col gap-2">
-              <label className="font-outfit text-[11px] text-gray-500 uppercase tracking-widest">FULL NAME</label>
+              <label className="font-outfit text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest">FULL NAME</label>
               <input 
-                className="w-full bg-white border border-black text-black px-5 py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400 font-medium" 
+                className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400 font-medium" 
                 placeholder="Your name" 
                 value={form.name} 
                 onChange={e => setForm({...form, name: e.target.value})} 
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-outfit text-[11px] text-gray-500 uppercase tracking-widest">BIO</label>
+              <label className="font-outfit text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest">BIO</label>
               <textarea 
-                className="w-full bg-white border border-black text-black px-5 py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400 min-h-[140px] leading-relaxed" 
+                className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400 min-h-[120px] sm:min-h-[140px] leading-relaxed" 
                 placeholder="Tell others about yourself..." 
                 value={form.bio} 
                 onChange={e => setForm({...form, bio: e.target.value})} 
               />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
               <div className="flex flex-col gap-2">
-                <label className="font-outfit text-[11px] text-gray-500 uppercase tracking-widest">CITY</label>
+                <label className="font-outfit text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest">CITY</label>
                 <input 
-                  className="w-full bg-white border border-black text-black px-5 py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400" 
+                  className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400" 
                   placeholder="e.g. Bangalore" 
                   value={form.city} 
                   onChange={e => setForm({...form, city: e.target.value})} 
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-outfit text-[11px] text-gray-500 uppercase tracking-widest">COUNTRY</label>
+                <label className="font-outfit text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest">COUNTRY</label>
                 <input 
-                  className="w-full bg-white border border-black text-black px-5 py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400" 
+                  className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400" 
                   placeholder="e.g. India" 
                   value={form.country} 
                   onChange={e => setForm({...form, country: e.target.value})} 
@@ -335,23 +335,23 @@ const EditProfile = () => {
         )}
 
         {step === 1 && (
-          <div className="flex flex-col gap-14">
+          <div className="flex flex-col gap-8 sm:gap-14">
             <div>
-              <h3 className="text-xl font-semibold mb-6 border-b border-gray-100 pb-3">Skills You Offer</h3>
-              <div className="flex gap-3 flex-wrap">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 border-b border-gray-100 pb-3">Skills You Offer</h3>
+              <div className="flex gap-2 sm:gap-3 flex-wrap">
                 {allSkills.map(s => (
                   <button 
                     key={s._id} 
                     onClick={() => toggleSkill(s._id, 'offered')}
-                    className={`px-5 py-2.5 rounded border border-black text-sm transition-all cursor-pointer font-medium ${form.skillsOffered.includes(s._id) ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-50'}`}
+                    className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded border border-black text-xs sm:text-sm transition-all cursor-pointer font-medium tap-target ${form.skillsOffered.includes(s._id) ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-50'}`}
                   >
                     {s.name}
                   </button>
                 ))}
               </div>
-              <div className="mt-8 flex gap-3 max-w-[450px]">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-2 sm:gap-3 sm:max-w-[450px]">
                 <input 
-                  className="flex-1 bg-white border border-black text-black px-4 py-2.5 rounded text-sm outline-none placeholder:text-gray-400 font-medium"
+                  className="flex-1 bg-white border border-black text-black px-3 sm:px-4 py-2.5 rounded text-sm outline-none placeholder:text-gray-400 font-medium"
                   placeholder="Can't find your skill? Type and add it..."
                   value={customSkill.offered}
                   onChange={e => setCustomSkill({...customSkill, offered: e.target.value})}
@@ -361,28 +361,28 @@ const EditProfile = () => {
                   type="button"
                   disabled={creatingSkill}
                   onClick={() => handleCreateCustomSkill('offered')}
-                  className="bg-black text-white px-5 py-2.5 rounded text-sm font-bold hover:bg-gray-800 disabled:bg-gray-400 whitespace-nowrap transition-all"
+                  className="bg-black text-white px-4 sm:px-5 py-2.5 rounded text-sm font-bold hover:bg-gray-800 disabled:bg-gray-400 whitespace-nowrap transition-all"
                 >
                   {creatingSkill ? 'Adding...' : 'Add Skill'}
                 </button>
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-6 border-b border-gray-100 pb-3">Skills You Want to Learn</h3>
-              <div className="flex gap-3 flex-wrap">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 border-b border-gray-100 pb-3">Skills You Want to Learn</h3>
+              <div className="flex gap-2 sm:gap-3 flex-wrap">
                 {allSkills.map(s => (
                   <button 
                     key={s._id} 
                     onClick={() => toggleSkill(s._id, 'wanted')}
-                    className={`px-5 py-2.5 rounded border border-black text-sm transition-all cursor-pointer font-medium ${form.skillsWanted.includes(s._id) ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-50'}`}
+                    className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded border border-black text-xs sm:text-sm transition-all cursor-pointer font-medium tap-target ${form.skillsWanted.includes(s._id) ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-50'}`}
                   >
                     {s.name}
                   </button>
                 ))}
               </div>
-              <div className="mt-8 flex gap-3 max-w-[450px]">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-2 sm:gap-3 sm:max-w-[450px]">
                 <input 
-                  className="flex-1 bg-white border border-black text-black px-4 py-2.5 rounded text-sm outline-none placeholder:text-gray-400 font-medium"
+                  className="flex-1 bg-white border border-black text-black px-3 sm:px-4 py-2.5 rounded text-sm outline-none placeholder:text-gray-400 font-medium"
                   placeholder="Type a skill you want to learn..."
                   value={customSkill.wanted}
                   onChange={e => setCustomSkill({...customSkill, wanted: e.target.value})}
@@ -392,7 +392,7 @@ const EditProfile = () => {
                   type="button"
                   disabled={creatingSkill}
                   onClick={() => handleCreateCustomSkill('wanted')}
-                  className="bg-black text-white px-5 py-2.5 rounded text-sm font-bold hover:bg-gray-800 disabled:bg-gray-400 whitespace-nowrap transition-all"
+                  className="bg-black text-white px-4 sm:px-5 py-2.5 rounded text-sm font-bold hover:bg-gray-800 disabled:bg-gray-400 whitespace-nowrap transition-all"
                 >
                   {creatingSkill ? 'Adding...' : 'Add Skill'}
                 </button>
@@ -402,13 +402,13 @@ const EditProfile = () => {
         )}
 
         {step === 2 && (
-          <div className="w-full">
-            <h3 className="text-xl font-semibold mb-2">Your Availability</h3>
-            <p className="text-gray-500 mb-10 text-sm">Select the time slots when you are typically free for sessions.</p>
-            <div className="flex flex-col gap-8">
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">Your Availability</h3>
+            <p className="text-gray-500 mb-6 sm:mb-10 text-sm sm:text-base">Select the time slots when you are typically free for sessions.</p>
+            <div className="flex flex-col gap-4 sm:gap-6">
               {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
-                <div key={day} className="flex flex-col sm:grid sm:grid-cols-[100px_1fr] items-start sm:items-center gap-4 border-b border-gray-50 pb-6 sm:border-0 sm:pb-0">
-                  <div className="font-outfit text-sm font-bold uppercase tracking-widest text-gray-400">{day}</div>
+                <div key={day} className="flex flex-col sm:grid sm:grid-cols-[80px_1fr] items-start sm:items-center gap-2 sm:gap-4">
+                  <div className="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-gray-500">{day}</div>
                   <div className="flex gap-2 sm:gap-3 flex-wrap">
                     {['Morning', 'Afternoon', 'Evening'].map(time => (
                       <button 
@@ -418,7 +418,7 @@ const EditProfile = () => {
                           const arr = form.availability.includes(key) ? form.availability.filter(x => x !== key) : [...form.availability, key];
                           setForm({...form, availability: arr});
                         }}
-                        className={`flex-1 sm:flex-initial px-4 py-2.5 rounded border border-gray-200 text-[11px] font-bold transition-all cursor-pointer uppercase tracking-wider ${form.availability.includes(`${day}_${time}`) ? 'bg-black border-black text-white' : 'bg-white text-black hover:border-black'}`}
+                        className={`px-3 sm:px-4 py-2 rounded border border-gray-200 text-[11px] sm:text-[12px] font-semibold transition-all cursor-pointer tap-target ${form.availability.includes(`${day}_${time}`) ? 'bg-black border-black text-white' : 'bg-white text-black hover:border-black'}`}
                       >
                         {time}
                       </button>
@@ -431,7 +431,7 @@ const EditProfile = () => {
         )}
 
         {step === 3 && (
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 sm:gap-10">
             <input 
               type="file" 
               multiple 
@@ -445,29 +445,29 @@ const EditProfile = () => {
               onDragOver={onDragOver}
               onDragLeave={onDragLeave}
               onDrop={onDrop}
-              className={`text-center py-20 border-2 border-dashed rounded-2xl transition-all cursor-pointer ${dragging ? 'bg-black border-black text-white' : 'border-gray-200 bg-gray-50 hover:border-black text-black'}`}
+              className={`text-center py-12 sm:py-20 border-2 border-dashed rounded-2xl transition-all cursor-pointer ${dragging ? 'bg-black border-black text-white' : 'border-gray-200 bg-gray-50 hover:border-black text-black'}`}
             >
-              <div className={`text-gray-200 mb-6 transition-transform ${dragging ? 'scale-125' : 'scale-100'}`}>
-                <Folder size={56} />
+              <div className={`text-gray-200 mb-4 sm:mb-6 transition-transform ${dragging ? 'scale-125' : 'scale-100'}`}>
+                <Folder size={40} className="sm:w-14 sm:h-14 mx-auto" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Portfolio / Work Samples</h3>
-              <p className="mb-8 max-w-[300px] mx-auto leading-relaxed text-sm">Drag & drop files or click here to upload your work showcases.</p>
-              <p className="font-outfit text-[10px] uppercase tracking-widest opacity-60">PNG, JPG, PDF — MAX 10MB</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">Portfolio / Work Samples</h3>
+              <p className="mb-6 sm:mb-8 max-w-[300px] mx-auto leading-relaxed text-xs sm:text-sm px-4">Drag & drop files or click here to upload your work showcases.</p>
+              <p className="font-outfit text-[9px] sm:text-[10px] uppercase tracking-widest opacity-60">PNG, JPG, PDF — MAX 10MB</p>
             </div>
 
             {form.portfolio.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {form.portfolio.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
-                    <div className="flex items-center gap-3 overflow-hidden">
-                      <div className="text-gray-400">
-                        <File size={24} />
+                  <div key={idx} className="flex justify-between items-center p-3 sm:p-4 bg-white border border-gray-100 rounded-xl shadow-sm gap-2">
+                    <div className="flex items-center gap-2 sm:gap-3 overflow-hidden min-w-0">
+                      <div className="text-gray-400 flex-shrink-0">
+                        <File size={20} className="sm:w-6 sm:h-6" />
                       </div>
-                      <div className="truncate text-sm font-medium">{item.name}</div>
+                      <div className="truncate text-xs sm:text-sm font-medium">{item.name}</div>
                     </div>
                     <button 
                       onClick={() => removePortfolioItem(idx)}
-                      className="text-red-500 hover:text-red-700 p-2 text-sm"
+                      className="text-red-500 hover:text-red-700 p-1 sm:p-2 text-xs sm:text-sm flex-shrink-0"
                     >
                       Remove
                     </button>
@@ -479,37 +479,37 @@ const EditProfile = () => {
         )}
 
         {step === 4 && (
-          <div className="border border-black p-10 rounded-2xl bg-white shadow-xl flex flex-col gap-8">
+          <div className="border border-black p-5 sm:p-10 rounded-2xl bg-white shadow-xl flex flex-col gap-6 sm:gap-8">
             <div>
-              <h3 className="text-3xl font-semibold mb-4">{form.name || 'Your Name'}</h3>
-              <p className="text-lg text-gray-700 leading-relaxed italic">"{form.bio || 'Your bio will appear here.'}"</p>
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-3 sm:mb-4">{form.name || 'Your Name'}</h3>
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed italic">"{form.bio || 'Your bio will appear here.'}"</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 border-t border-gray-100 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10 border-t border-gray-100 pt-6 sm:pt-8">
               <div>
-                <div className="font-outfit text-[11px] text-gray-400 uppercase tracking-widest mb-4">SKILLS OFFERED</div>
+                <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mb-3 sm:mb-4">SKILLS OFFERED</div>
                 <div className="flex gap-2 flex-wrap">
                   {form.skillsOffered.length > 0 ? form.skillsOffered.map(id => {
                     const skill = allSkills.find(s => s._id === id);
-                    return <span key={id} className="text-[11px] font-bold border border-black px-3 py-1 rounded tracking-widest uppercase bg-black text-white">{skill?.name}</span>;
+                    return <span key={id} className="text-[10px] sm:text-[11px] font-bold border border-black px-2 sm:px-3 py-1 rounded tracking-widest uppercase bg-black text-white">{skill?.name}</span>;
                   }) : <span className="text-sm text-gray-400 italic">None selected</span>}
                 </div>
               </div>
               <div>
-                <div className="font-outfit text-[11px] text-gray-400 uppercase tracking-widest mb-4">SKILLS WANTED</div>
+                <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mb-3 sm:mb-4">SKILLS WANTED</div>
                 <div className="flex gap-2 flex-wrap">
                   {form.skillsWanted.length > 0 ? form.skillsWanted.map(id => {
                     const skill = allSkills.find(s => s._id === id);
-                    return <span key={id} className="text-[11px] font-bold border border-gray-300 text-gray-400 px-3 py-1 rounded tracking-widest uppercase">{skill?.name}</span>;
+                    return <span key={id} className="text-[10px] sm:text-[11px] font-bold border border-gray-300 text-gray-400 px-2 sm:px-3 py-1 rounded tracking-widest uppercase">{skill?.name}</span>;
                   }) : <span className="text-sm text-gray-400 italic">None selected</span>}
                 </div>
               </div>
             </div>
             {form.portfolio.length > 0 && (
-              <div className="border-t border-gray-100 pt-8">
-                <div className="font-outfit text-[11px] text-gray-400 uppercase tracking-widest mb-4">PORTFOLIO ({form.portfolio.length})</div>
-                <div className="flex gap-3 flex-wrap">
+              <div className="border-t border-gray-100 pt-6 sm:pt-8">
+                <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mb-3 sm:mb-4">PORTFOLIO ({form.portfolio.length})</div>
+                <div className="flex gap-2 sm:gap-3 flex-wrap">
                   {form.portfolio.map((item, idx) => (
-                    <div key={idx} className="text-sm font-medium border border-gray-100 px-4 py-2 rounded-lg bg-gray-50">
+                    <div key={idx} className="text-xs sm:text-sm font-medium border border-gray-100 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-gray-50 truncate max-w-[200px]">
                       {item.name}
                     </div>
                   ))}
@@ -521,9 +521,9 @@ const EditProfile = () => {
       </div>
 
       {/* Navigation */}
-      <div className="mt-20 flex justify-between items-center border-t border-gray-100 pt-10">
+      <div className="mt-12 sm:mt-20 flex justify-between items-center border-t border-gray-100 pt-6 sm:pt-10 gap-4">
         <button 
-          className="px-8 py-3 rounded border border-gray-100 text-black font-semibold hover:border-black disabled:opacity-30 disabled:cursor-not-allowed transition-all" 
+          className="px-5 sm:px-8 py-2.5 sm:py-3 rounded border border-gray-100 text-black font-semibold hover:border-black disabled:opacity-30 disabled:cursor-not-allowed transition-all text-sm sm:text-base" 
           onClick={() => setStep(Math.max(0, step - 1))} 
           disabled={step === 0}
         >
@@ -531,7 +531,7 @@ const EditProfile = () => {
         </button>
         {step < STEPS.length - 1 ? (
           <button 
-            className="bg-black text-white px-10 py-3 rounded border border-black font-semibold hover:bg-white hover:text-black transition-all active:scale-95 shadow-lg" 
+            className="bg-black text-white px-6 sm:px-10 py-2.5 sm:py-3 rounded border border-black font-semibold hover:bg-white hover:text-black transition-all active:scale-95 shadow-lg text-sm sm:text-base" 
             onClick={() => handleStepChange(step + 1)}
           >
             Next Step
@@ -540,7 +540,7 @@ const EditProfile = () => {
           <button 
             disabled={saving}
             onClick={handleSave}
-            className="bg-black text-white px-12 py-4 rounded border border-black font-semibold hover:bg-white hover:text-black transition-all active:scale-95 shadow-2xl disabled:opacity-50"
+            className="bg-black text-white px-8 sm:px-12 py-3 sm:py-4 rounded border border-black font-semibold hover:bg-white hover:text-black transition-all active:scale-95 shadow-2xl disabled:opacity-50 text-sm sm:text-base"
           >
             {saving ? 'Saving...' : 'Save Profile'}
           </button>

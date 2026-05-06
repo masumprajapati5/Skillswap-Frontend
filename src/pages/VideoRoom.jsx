@@ -60,7 +60,7 @@ const VideoRoom = () => {
           parentNode: jitsiContainerRef.current,
           userInfo: {
             displayName: user?.name || 'SkillSwap User',
-            email: user?.email || '' // Pass user email for Gravatar and identity
+            email: user?.email || ''
           },
           configOverwrite: {
             startWithAudioMuted: false,
@@ -83,7 +83,7 @@ const VideoRoom = () => {
             SHOW_WATERMARK_FOR_GUESTS: false,
             SHOW_BRAND_WATERMARK: false,
             SHOW_POWERED_BY: false,
-            AUTHENTICATION_ENABLE: false, // Disable Jitsi's internal auth prompt
+            AUTHENTICATION_ENABLE: false,
             MOBILE_APP_PROMO: false,
           }
         };
@@ -135,14 +135,14 @@ const VideoRoom = () => {
   }, [loading, session, id, user, navigate]);
 
   if (loading) return (
-    <div className="h-screen bg-black flex flex-col items-center justify-center text-white gap-6">
-      <div className="w-12 h-12 border-4 border-white/10 border-t-white rounded-full animate-spin"></div>
-      <div className="font-medium tracking-widest text-xs uppercase opacity-50">Establishing Secure Line...</div>
+    <div className="h-screen bg-black flex flex-col items-center justify-center text-white gap-4 sm:gap-6 px-4">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-white/10 border-t-white rounded-full animate-spin"></div>
+      <div className="font-medium tracking-widest text-[10px] sm:text-xs uppercase opacity-50">Establishing Secure Line...</div>
     </div>
   );
 
   if (!session) return (
-    <div className="h-screen bg-black flex items-center justify-center text-white font-medium">
+    <div className="h-screen bg-black flex items-center justify-center text-white font-medium px-4 text-center">
       Session connection failed.
     </div>
   );
@@ -150,27 +150,27 @@ const VideoRoom = () => {
   return (
     <div className="h-screen bg-black flex flex-col overflow-hidden relative">
       {/* Integrated Header Overlay */}
-      <div className="absolute top-0 left-0 w-full p-4 sm:p-6 z-20 flex flex-col sm:flex-row justify-between items-center sm:items-center gap-4 pointer-events-none">
-        <div className="flex items-center gap-4 bg-black/60 backdrop-blur-xl px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl border border-white/10 pointer-events-auto">
-          <div className="bg-red-500 w-2 h-2 rounded-full animate-pulse" />
-          <div className="text-[12px] sm:text-sm font-bold tracking-tight truncate max-w-[150px] sm:max-w-none">{session.title}</div>
-          <div className="h-4 w-px bg-white/20 mx-1 sm:mx-2" />
-          <div className="text-[9px] sm:text-[11px] font-bold uppercase tracking-widest opacity-50">Live</div>
+      <div className="absolute top-0 left-0 w-full p-3 sm:p-6 z-20 flex flex-col sm:flex-row justify-between items-start sm:items-center pointer-events-none gap-2 sm:gap-0">
+        <div className="flex items-center gap-2 sm:gap-4 bg-black/40 backdrop-blur-xl px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-white/10 pointer-events-auto max-w-full overflow-hidden">
+          <div className="bg-red-500 w-2 h-2 rounded-full animate-pulse flex-shrink-0" />
+          <div className="text-xs sm:text-sm font-bold tracking-tight truncate">{session.title}</div>
+          <div className="h-4 w-px bg-white/20 mx-1 sm:mx-2 hidden sm:block" />
+          <div className="text-[9px] sm:text-[11px] font-bold uppercase tracking-widest opacity-50 hidden sm:block">Live Session</div>
         </div>
         
-        <div className="flex gap-2 sm:gap-3 pointer-events-auto">
+        <div className="flex gap-2 sm:gap-3 pointer-events-auto w-full sm:w-auto">
           <button 
             onClick={handleMarkComplete}
             disabled={actionLoading}
-            className="bg-green-500 hover:bg-green-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-2xl active:scale-95"
+            className="bg-green-500 hover:bg-green-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-2xl active:scale-95 flex-1 sm:flex-initial"
           >
-            {actionLoading ? '...' : 'Complete'}
+            {actionLoading ? 'Saving...' : 'Mark Completed'}
           </button>
           <button 
             onClick={() => navigate(`/sessions/${id}`)}
-            className="bg-white text-black px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all shadow-2xl active:scale-95"
+            className="bg-white text-black px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all shadow-2xl active:scale-95 flex-1 sm:flex-initial"
           >
-            Exit
+            Exit Room
           </button>
         </div>
       </div>
@@ -179,11 +179,11 @@ const VideoRoom = () => {
       <div ref={jitsiContainerRef} className="flex-1 w-full h-full bg-[#1a1a1a]" />
 
       {/* Subtle Branding */}
-      <div className="absolute bottom-4 right-6 pointer-events-none z-20">
+      <div className="absolute bottom-4 right-4 sm:right-6 pointer-events-none z-20">
         <div className="flex items-center gap-2 opacity-30">
-          <span className="text-[10px] font-black uppercase tracking-tighter">SkillSwap</span>
-          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-          <span className="text-[10px] font-medium opacity-50">v1.2.0-SECURE</span>
+          <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-tighter">SkillSwap</span>
+          <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white rounded-full" />
+          <span className="text-[9px] sm:text-[10px] font-medium opacity-50">v1.2.0-SECURE</span>
         </div>
       </div>
     </div>

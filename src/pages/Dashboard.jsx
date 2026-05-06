@@ -32,31 +32,31 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="py-20 px-6 max-w-[1000px] mx-auto text-center">
+      <div className="section-padding-y responsive-container-narrow text-center">
         <p className="text-gray-500 animate-pulse">Loading dashboard...</p>
       </div>
     );
   }
 
   return (
-    <div className="py-12 px-6 max-w-[1000px] mx-auto min-h-screen">
-      <div className="mb-12">
-        <h1 className="text-[32px] font-bold text-[#37352F] mb-1 tracking-tight">Dashboard</h1>
-        <p className="text-[#37352F]/60 font-medium">Welcome back, {authUser?.name}!</p>
+    <div className="responsive-container-narrow min-h-screen" style={{ paddingTop: 'clamp(1.5rem, 3vw, 3rem)', paddingBottom: 'clamp(1.5rem, 3vw, 3rem)' }}>
+      <div className="mb-8 sm:mb-12">
+        <h1 className="text-heading-md text-[#37352F] mb-1 tracking-tight">Dashboard</h1>
+        <p className="text-[#37352F]/60 font-medium text-sm sm:text-base">Welcome back, {authUser?.name}!</p>
       </div>
 
       <ProfilePrompt user={authUser} />
 
       {/* Stats row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-10 sm:mb-16">
         {[
           { label: 'Credits', value: authUser?.credits || 0, color: (authUser?.credits === 0) ? 'text-red-500' : 'text-[#37352F]' },
           { label: 'Sessions', value: sessions.length },
           { label: 'Rating', value: (authUser?.rating || 0).toFixed(1) },
           { label: 'Matches', value: matches.length },
         ].map((stat, i) => (
-          <div key={i} className="bg-[#F7F7F5] p-5 sm:p-6 rounded-xl">
-            <div className="text-[10px] sm:text-[11px] font-bold text-[#37352F]/40 uppercase tracking-widest mb-2">{stat.label}</div>
+          <div key={i} className="bg-[#F7F7F5] p-4 sm:p-6 rounded-xl">
+            <div className="text-[10px] sm:text-[11px] font-bold text-[#37352F]/40 uppercase tracking-widest mb-1 sm:mb-2">{stat.label}</div>
             <div className={`text-2xl sm:text-3xl font-bold ${stat.color || 'text-[#37352F]'}`}>{stat.value}</div>
           </div>
         ))}
@@ -64,53 +64,53 @@ const Dashboard = () => {
 
       {/* Zero Credit UX Alert */}
       {authUser?.credits === 0 && (
-        <div className="bg-[#EB5757]/5 border border-[#EB5757]/10 p-8 rounded-2xl mb-20 flex flex-col md:flex-row items-center justify-between gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold mb-2 text-[#EB5757]">You're out of credits!</h2>
-            <p className="text-gray-600 max-w-[400px] font-medium">Teach your skills to others to earn more credits and unlock new learning sessions.</p>
+        <div className="bg-[#EB5757]/5 border border-[#EB5757]/10 p-5 sm:p-8 rounded-2xl mb-12 sm:mb-20 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+          <div className="text-center sm:text-left">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2 text-[#EB5757]">You're out of credits!</h2>
+            <p className="text-gray-600 max-w-[400px] font-medium text-sm sm:text-base">Teach your skills to others to earn more credits and unlock new learning sessions.</p>
           </div>
           <Link 
             to="/explore" 
-            className="bg-black text-white px-8 py-3.5 rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 shadow-lg whitespace-nowrap"
+            className="bg-black text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 shadow-lg whitespace-nowrap w-full sm:w-auto text-center"
           >
             Earn Credits Now
           </Link>
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-16">
+      <div className="grid grid-cols-1 gap-10 sm:gap-16">
         {/* Smart Matches */}
         <div>
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-xl font-bold tracking-tight">Smart Matches</h2>
+          <div className="flex justify-between items-center mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-bold tracking-tight">Smart Matches</h2>
             <Link to="/explore" className="text-sm font-bold text-black/40 hover:text-black transition-colors">View More</Link>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {matches.length > 0 ? matches.map((m) => (
-              <div key={m._id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:border-gray-200 transition-all gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-[#F7F7F5] text-[#37352F] rounded-lg flex items-center justify-center font-bold overflow-hidden border border-gray-100">
+              <div key={m._id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 sm:p-6 bg-white border border-gray-100 rounded-xl sm:rounded-2xl shadow-sm hover:border-gray-200 transition-all gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#F7F7F5] text-[#37352F] rounded-lg flex items-center justify-center font-bold overflow-hidden border border-gray-100 flex-shrink-0">
                     {m.avatar ? (
                       <img src={m.avatar} alt={m.name} className="w-full h-full object-cover" />
                     ) : (
                       m.name.charAt(0)
                     )}
                   </div>
-                  <div>
-                    <div className="font-bold text-lg">{m.name}</div>
-                    <div className="text-sm text-gray-500 font-medium">
+                  <div className="min-w-0">
+                    <div className="font-bold text-base sm:text-lg truncate">{m.name}</div>
+                    <div className="text-xs sm:text-sm text-gray-500 font-medium truncate">
                       Offers {m.skillsOffered?.map(s => s.name).join(', ') || 'None'}
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-between w-full sm:w-auto">
+                <div className="flex items-center gap-3 sm:gap-6 justify-between w-full sm:w-auto">
                   <span className="text-sm font-bold bg-[#F7F7F5] px-3 py-1 rounded-full text-black/60">★ {(m.rating || 0).toFixed(1)}</span>
-                  <Link to={`/profile/${m._id}`} className="w-full sm:w-auto text-center bg-white text-black border border-gray-200 px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition-all active:scale-95 whitespace-nowrap">View Profile</Link>
+                  <Link to={`/profile/${m._id}`} className="bg-white text-black border border-gray-200 px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-sm font-bold hover:bg-gray-50 transition-all active:scale-95 whitespace-nowrap">View Profile</Link>
                 </div>
               </div>
             )) : (
-              <div className="text-center py-12 bg-[#F7F7F5] rounded-2xl border border-dashed border-gray-200">
-                <p className="text-gray-400 font-medium">No matches found yet. Try adding more skills!</p>
+              <div className="text-center py-8 sm:py-12 bg-[#F7F7F5] rounded-2xl border border-dashed border-gray-200">
+                <p className="text-gray-400 font-medium text-sm sm:text-base">No matches found yet. Try adding more skills!</p>
               </div>
             )}
           </div>
@@ -121,4 +121,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

@@ -93,7 +93,7 @@ const Notifications = () => {
 
   if (loading) {
     return (
-      <div className="py-20 px-6 max-w-[1000px] mx-auto text-center">
+      <div className="py-16 sm:py-20 text-center responsive-container-narrow">
         <p className="text-gray-400 font-outfit uppercase tracking-widest text-[11px]">Loading Activity Center...</p>
       </div>
     );
@@ -115,13 +115,13 @@ const Notifications = () => {
   ];
 
   return (
-    <div className="py-20 px-6 max-w-[800px] mx-auto min-h-[70vh]">
-      <div className="mb-16">
-        <h1 className="text-4xl font-medium mb-3 tracking-tight">Notifications</h1>
-        <p className="text-gray-500 text-lg">Grouped activity and platform updates.</p>
+    <div className="responsive-container-narrow min-h-[70vh]" style={{ maxWidth: '800px', paddingTop: 'clamp(2rem, 4vw, 5rem)', paddingBottom: 'clamp(2rem, 4vw, 5rem)' }}>
+      <div className="mb-10 sm:mb-16">
+        <h1 className="text-heading-md mb-2 sm:mb-3 tracking-tight">Notifications</h1>
+        <p className="text-gray-500 text-base sm:text-lg">Grouped activity and platform updates.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
         {categories.map(cat => {
           const latest = getLatest(cat.id);
           const count = getUnreadCount(cat.id);
@@ -130,11 +130,11 @@ const Notifications = () => {
             <div 
               key={cat.id}
               onClick={() => handleCategoryClick(cat.id)}
-              className="group cursor-pointer border border-gray-100 p-8 rounded-3xl transition-all hover:border-black bg-white flex flex-col justify-between min-h-[300px]"
+              className="group cursor-pointer border border-gray-100 p-6 sm:p-8 rounded-2xl sm:rounded-3xl transition-all hover:border-black bg-white flex flex-col justify-between min-h-[250px] sm:min-h-[300px]"
             >
               <div>
-                <div className="flex justify-between items-start mb-10">
-                  <div className="text-3xl grayscale group-hover:grayscale-0 transition-all">
+                <div className="flex justify-between items-start mb-8 sm:mb-10">
+                  <div className="text-2xl sm:text-3xl grayscale group-hover:grayscale-0 transition-all">
                     {cat.icon}
                   </div>
                   {count > 0 && (
@@ -144,17 +144,17 @@ const Notifications = () => {
                   )}
                 </div>
                 
-                <h3 className="text-2xl font-medium mb-3 tracking-tight">{cat.title}</h3>
-                <p className="text-[13px] text-gray-400 leading-relaxed font-normal">
+                <h3 className="text-xl sm:text-2xl font-medium mb-2 sm:mb-3 tracking-tight">{cat.title}</h3>
+                <p className="text-[12px] sm:text-[13px] text-gray-400 leading-relaxed font-normal">
                   {cat.desc}
                 </p>
               </div>
 
-              <div className="mt-12 pt-8 border-t border-gray-50">
+              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-50">
                 {latest ? (
                   <>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300 mb-2">Latest Update</p>
-                    <p className="text-[13px] text-gray-600 line-clamp-2 leading-relaxed">
+                    <p className="text-[12px] sm:text-[13px] text-gray-600 line-clamp-2 leading-relaxed">
                       {latest.content}
                     </p>
                   </>

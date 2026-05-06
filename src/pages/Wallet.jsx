@@ -35,41 +35,39 @@ const Wallet = () => {
   const balance = wallet?.balance || 0;
 
   return (
-    <div className="min-h-[85vh] flex flex-col items-center justify-center px-6 py-12 sm:py-20 max-w-[1200px] mx-auto">
+    <div className="min-h-[85vh] flex flex-col items-center justify-center responsive-container" style={{ paddingTop: 'clamp(3rem, 6vw, 5rem)', paddingBottom: 'clamp(3rem, 6vw, 5rem)' }}>
       {/* Header - Centered */}
       <div className="mb-10 sm:mb-16 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Wallet</h1>
-        <p className="text-gray-500 text-base sm:text-lg max-w-[500px] mx-auto font-medium">Your balance and platform currency status.</p>
+        <h1 className="text-display mb-3 sm:mb-4 tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>Wallet</h1>
+        <p className="text-gray-500 text-base sm:text-lg max-w-[500px] mx-auto">Your balance and platform currency status.</p>
       </div>
 
-      {/* Main Balance Display - Large and Centered */}
+      {/* Main Balance Display */}
       <div className="w-full max-w-[500px]">
-        <div className={`relative overflow-hidden border ${balance === 0 ? 'border-red-500' : 'border-black'} p-16 rounded-[40px] flex flex-col items-center justify-center gap-4 transition-all bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)]`}>
-          {/* Subtle background decoration */}
+        <div className={`relative overflow-hidden border ${balance === 0 ? 'border-red-500' : 'border-black'} rounded-2xl sm:rounded-[40px] flex flex-col items-center justify-center gap-3 sm:gap-4 transition-all bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)]`} style={{ padding: 'clamp(2.5rem, 5vw, 4rem)' }}>
+          <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-[0.3em] mb-1 sm:mb-2 font-black">TOTAL BALANCE</div>
 
-          <div className="font-outfit text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-[0.3em] mb-2 font-black">TOTAL BALANCE</div>
-
-          <div className={`text-[80px] sm:text-[120px] font-semibold leading-none tracking-tighter ${balance === 0 ? 'text-red-500' : 'text-black'}`}>
+          <div className={`font-semibold leading-none tracking-tighter ${balance === 0 ? 'text-red-500' : 'text-black'}`} style={{ fontSize: 'clamp(4rem, 15vw, 7.5rem)' }}>
             {balance}
           </div>
 
-          <div className="font-outfit text-[13px] text-black/40 mt-4 uppercase tracking-[0.2em] font-bold italic">Skill Credits</div>
+          <div className="font-outfit text-[11px] sm:text-[13px] text-black/40 mt-2 sm:mt-4 uppercase tracking-[0.2em] font-bold italic">Skill Credits</div>
         </div>
       </div>
 
       {/* Action Area / Zero State */}
-      <div className="mt-16 w-full max-w-[500px]">
+      <div className="mt-10 sm:mt-16 w-full max-w-[500px]">
         {balance === 0 ? (
-          <div className="p-8 rounded-3xl bg-red-50/50 border border-red-100 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <h2 className="text-lg font-bold text-red-600 mb-2">Insufficient Credits</h2>
-            <p className="text-gray-500 text-sm mb-8 leading-relaxed">Teach your skills to others to earn more credits and unlock learning opportunities.</p>
-            <a href="/explore" className="inline-block bg-black text-white px-10 py-4 rounded-full text-sm font-bold hover:bg-gray-800 transition-all active:scale-95 shadow-xl">
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-red-50/50 border border-red-100 text-center">
+            <h2 className="text-base sm:text-lg font-bold text-red-600 mb-2">Insufficient Credits</h2>
+            <p className="text-gray-500 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">Teach your skills to others to earn more credits and unlock learning opportunities.</p>
+            <a href="/explore" className="inline-block bg-black text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm font-bold hover:bg-gray-800 transition-all active:scale-95 shadow-xl">
               Earn Credits Now
             </a>
           </div>
         ) : (
           <div className="text-center">
-            <a href="/explore" className="inline-block border border-black text-black px-10 py-4 rounded-full text-sm font-bold hover:bg-black hover:text-white transition-all active:scale-95">
+            <a href="/explore" className="inline-block border border-black text-black px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm font-bold hover:bg-black hover:text-white transition-all active:scale-95">
               Request a Learning Session
             </a>
           </div>
@@ -77,11 +75,11 @@ const Wallet = () => {
       </div>
 
       {/* Information Footer */}
-      <div className="mt-24 max-w-[600px] text-center">
-        <div className="inline-block p-1 bg-gray-50 rounded-full mb-6">
+      <div className="mt-16 sm:mt-24 max-w-[600px] text-center px-4">
+        <div className="inline-block p-1 bg-gray-50 rounded-full mb-4 sm:mb-6">
           <div className="px-4 py-1 bg-white rounded-full text-[10px] font-black uppercase tracking-widest text-gray-400 border border-gray-100">Quick Guide</div>
         </div>
-        <p className="text-gray-400 text-[14px] leading-relaxed">
+        <p className="text-gray-400 text-[13px] sm:text-[14px] leading-relaxed">
           Credits are the heart of <span className="text-black font-medium">SkillSwap</span>.
           You earn <span className="text-black font-medium">1 credit</span> for every hour you teach,
           and spend <span className="text-black font-medium">1 credit</span> for every hour you learn.

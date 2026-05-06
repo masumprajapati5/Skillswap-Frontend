@@ -15,6 +15,7 @@ const Explore = () => {
     minRating: Number(searchParams.get('minRating')) || 0,
     hasCredits: searchParams.get('hasCredits') === 'true'
   });
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -105,20 +106,29 @@ const Explore = () => {
   };
 
   return (
-    <div className="py-8 sm:py-12 px-6 max-w-[1200px] mx-auto min-h-screen">
-      <div className="mb-8 sm:mb-12 text-center sm:text-left">
-        <h1 className="text-[28px] sm:text-[32px] font-bold text-[#37352F] mb-1 tracking-tight">Explore Experts</h1>
-        <p className="text-sm sm:text-base text-[#37352F]/60 font-medium">Discover new expertise across the global network.</p>
+    <div className="responsive-container min-h-screen" style={{ paddingTop: 'clamp(1.5rem, 3vw, 3rem)', paddingBottom: 'clamp(1.5rem, 3vw, 3rem)' }}>
+      <div className="mb-8 sm:mb-12">
+        <h1 className="text-heading-md text-[#37352F] mb-1 tracking-tight">Explore Experts</h1>
+        <p className="text-[#37352F]/60 font-medium text-sm sm:text-base">Discover new expertise across the global network.</p>
       </div>
 
       <ProfilePrompt user={currentUser} />
 
-      <div className="flex flex-col md:flex-row gap-12">
+      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12">
+        {/* Mobile filter toggle */}
+        <button 
+          onClick={() => setShowFilters(!showFilters)}
+          className="lg:hidden flex items-center gap-2 text-sm font-bold text-black/60 bg-[#F7F7F5] px-4 py-3 rounded-xl tap-target"
+        >
+          <Filter size={16} />
+          {showFilters ? 'Hide Filters' : 'Show Filters & Sort'}
+        </button>
+
         {/* Sidebar - Filters */}
-        <aside className="w-full md:w-64 flex-shrink-0 flex flex-col sm:flex-row md:flex-col gap-6 sm:gap-10">
+        <aside className={`w-full lg:w-64 flex-shrink-0 flex flex-col gap-6 sm:gap-10 ${showFilters ? 'block' : 'hidden lg:flex'}`}>
           
           {/* Sorting Sidebar */}
-          <div className="flex-1">
+          <div>
             <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-3 sm:mb-4">Sort By</h3>
             <select 
               value={sortBy} 
@@ -131,10 +141,10 @@ const Explore = () => {
           </div>
 
           {/* Advanced Filters Sidebar */}
-          <div className="flex-1 flex flex-col gap-6">
-            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-1 hidden sm:block">Filters</h3>
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <h3 className="text-[11px] font-bold uppercase tracking-widest text-black/40 mb-1">Filters</h3>
             
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 sm:gap-3">
               <label className="text-[10px] font-black uppercase text-black/30 tracking-tight">Minimum Rating</label>
               <select 
                 value={filters.minRating} 
@@ -171,107 +181,110 @@ const Explore = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1">
+        <main className="flex-1 min-w-0">
           {/* Smart Matches Hero Banner */}
-          <div className="mb-10 group">
+          <div className="mb-6 sm:mb-10 group">
             <button 
               onClick={handleSmartMatchClick}
-              className={`w-full text-left p-8 rounded-2xl border transition-all duration-500 flex flex-col sm:flex-row justify-between items-center gap-6 ${showSmartMatches ? 'border-black bg-black text-white shadow-2xl scale-[1.01]' : 'border-gray-100 bg-[#F7F7F5]/50 hover:border-gray-300'}`}
+              className={`w-full text-left p-5 sm:p-8 rounded-2xl border transition-all duration-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 ${showSmartMatches ? 'border-black bg-black text-white shadow-2xl' : 'border-gray-100 bg-[#F7F7F5]/50 hover:border-gray-300'}`}
             >
-              <div className="flex items-center gap-6">
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-12 ${showSmartMatches ? 'bg-white/10' : 'bg-white shadow-sm'}`}>
-                  <Sparkles size={24} className={showSmartMatches ? 'text-white' : 'text-black'} />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-12 flex-shrink-0 ${showSmartMatches ? 'bg-white/10' : 'bg-white shadow-sm'}`}>
+                  <Sparkles size={20} className={`sm:w-6 sm:h-6 ${showSmartMatches ? 'text-white' : 'text-black'}`} />
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold tracking-tight ${showSmartMatches ? 'text-white' : 'text-black'}`}>
+                  <h3 className={`text-base sm:text-xl font-bold tracking-tight ${showSmartMatches ? 'text-white' : 'text-black'}`}>
                     {showSmartMatches ? 'Smart Matches' : 'Smart Match AI'}
                   </h3>
-                  <p className={`text-sm font-medium ${showSmartMatches ? 'text-gray-400' : 'text-gray-500'}`}>
+                  <p className={`text-xs sm:text-sm font-medium ${showSmartMatches ? 'text-gray-400' : 'text-gray-500'}`}>
                     {showSmartMatches ? 'Experts selected based on your profile.' : 'Find experts who match your learning goals.'}
                   </p>
                 </div>
               </div>
-              <div className={`px-6 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${showSmartMatches ? 'bg-white text-black' : 'bg-black text-white'}`}>
+              <div className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${showSmartMatches ? 'bg-white text-black' : 'bg-black text-white'}`}>
                 {showSmartMatches ? 'Show All' : 'Run Match'}
               </div>
             </button>
           </div>
 
           {/* Search Bar */}
-          <div className="mb-10 relative group">
+          <div className="mb-6 sm:mb-10 relative group">
             <input 
-              className="w-full bg-[#F7F7F5] border-transparent px-6 py-4 rounded-xl outline-none focus:bg-white focus:ring-4 focus:ring-black/5 placeholder:text-gray-400 text-lg font-medium transition-all" 
+              className="w-full bg-[#F7F7F5] border-transparent px-4 sm:px-6 py-3 sm:py-4 rounded-xl outline-none focus:bg-white focus:ring-4 focus:ring-black/5 placeholder:text-gray-400 text-base sm:text-lg font-medium transition-all" 
               placeholder="Search experts by name or skill..."
               value={search} 
               onChange={e => setSearch(e.target.value)} 
             />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-black transition-colors">
-              <Search size={22} />
+            <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-black transition-colors">
+              <Search size={20} className="sm:w-[22px] sm:h-[22px]" />
             </div>
           </div>
 
           {/* Results Grid */}
-          <div className="flex flex-col gap-4 min-h-[500px] relative">
+          <div className="flex flex-col gap-3 sm:gap-4 min-h-[300px] sm:min-h-[500px] relative">
             {isMatching ? (
-              <div className="absolute inset-0 z-10 bg-white/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center py-20 rounded-2xl">
-                <div className="relative w-20 h-20 mb-6">
+              <div className="absolute inset-0 z-10 bg-white/80 backdrop-blur-[2px] flex flex-col items-center justify-center text-center py-16 sm:py-20 rounded-2xl">
+                <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-4 sm:mb-6">
                   <div className="absolute inset-0 border-4 border-gray-100 rounded-full"></div>
                   <div className="absolute inset-0 border-4 border-black rounded-full border-t-transparent animate-spin"></div>
                   <div className="absolute inset-0 flex items-center justify-center text-gray-200 animate-pulse">
-                    <Sparkles size={28} />
+                    <Sparkles size={24} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-1 tracking-tight">Finding Matches</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-1 tracking-tight">Finding Matches</h3>
                 <p className="text-gray-500 text-sm font-medium">Analyzing skills and requirements...</p>
               </div>
             ) : loading ? (
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4 sm:gap-6">
                 {[1,2,3].map(i => (
-                  <div key={i} className="h-40 bg-[#F7F7F5] rounded-2xl animate-pulse border border-gray-100"></div>
+                  <div key={i} className="h-28 sm:h-40 bg-[#F7F7F5] rounded-2xl animate-pulse border border-gray-100"></div>
                 ))}
               </div>
             ) : users.length > 0 ? (
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3 sm:gap-6">
                 {users.map((u) => (
                   <Link 
                     key={u._id} 
                     to={`/profile/${u._id}`}
-                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-8 bg-white border border-gray-100 rounded-2xl shadow-sm hover:border-gray-300 transition-all gap-8 group no-underline text-[#37352F]"
+                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 sm:p-8 bg-white border border-gray-100 rounded-xl sm:rounded-2xl shadow-sm hover:border-gray-300 transition-all gap-4 sm:gap-8 group no-underline text-[#37352F]"
                   >
-                    <div className="flex flex-col gap-4 flex-1">
-                      <div className="flex items-center gap-5">
-                        <div className="w-16 h-16 bg-[#F7F7F5] text-[#37352F] rounded-2xl flex items-center justify-center font-bold overflow-hidden border border-gray-100">
+                    <div className="flex flex-col gap-3 sm:gap-4 flex-1 min-w-0 w-full">
+                      <div className="flex items-center gap-3 sm:gap-5">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-[#F7F7F5] text-[#37352F] rounded-xl sm:rounded-2xl flex items-center justify-center font-bold overflow-hidden border border-gray-100 flex-shrink-0">
                           {u.avatar ? <img src={u.avatar} alt={u.name} className="w-full h-full object-cover" /> : u.name.charAt(0)}
                         </div>
-                        <div>
-                          <div className="text-xl sm:text-2xl font-bold group-hover:underline tracking-tight">{u.name}</div>
-                          <div className="text-[11px] sm:text-sm text-gray-500 font-bold flex flex-wrap items-center gap-2 sm:gap-3 mt-1">
+                        <div className="min-w-0 flex-1">
+                          <div className="text-lg sm:text-2xl font-bold group-hover:underline tracking-tight truncate">{u.name}</div>
+                          <div className="text-xs sm:text-sm text-gray-500 font-bold flex items-center gap-2 sm:gap-3 mt-0.5 sm:mt-1 flex-wrap">
                              <span className="flex items-center gap-1 text-black/60 bg-[#F7F7F5] px-2 py-0.5 rounded-md">
                                <Star size={12} className="fill-current" /> {u.rating.toFixed(1)}
                              </span>
                              <span className="text-black/30 hidden sm:inline">·</span>
-                             <span>{u.credits} credits</span>
+                             <span className="hidden sm:inline">{u.credits} credits</span>
                              <span className="text-black/30 hidden sm:inline">·</span>
-                             <span className="flex items-center gap-1"><MapPin size={12} /> {u.location?.city || 'Remote'}</span>
+                             <span className="hidden sm:flex items-center gap-1"><MapPin size={12} /> {u.location?.city || 'Remote'}</span>
                           </div>
                         </div>
                       </div>
                       
-                      <div className="flex flex-col gap-4 mt-2">
-                        <div className="flex gap-4 items-center">
+                      <div className="flex flex-col gap-2 sm:gap-4 mt-1 sm:mt-2">
+                        <div className="flex gap-2 sm:gap-4 items-center flex-wrap">
                           <span className="text-[10px] font-black text-black/30 uppercase tracking-[0.2em]">Offers</span>
-                          <div className="flex gap-2 flex-wrap">
-                            {u.skillsOffered?.map(skill => (
-                              <span key={skill._id} className="text-[11px] font-bold bg-[#F7F7F5] border border-gray-100 px-3 py-1 rounded-lg tracking-tight uppercase text-black/80 group-hover:bg-black group-hover:text-white transition-all">
+                          <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+                            {u.skillsOffered?.slice(0, 4).map(skill => (
+                              <span key={skill._id} className="text-[10px] sm:text-[11px] font-bold bg-[#F7F7F5] border border-gray-100 px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg tracking-tight uppercase text-black/80 group-hover:bg-black group-hover:text-white transition-all">
                                 {skill.name}
                               </span>
                             ))}
+                            {u.skillsOffered?.length > 4 && (
+                              <span className="text-[10px] sm:text-[11px] font-bold text-black/30">+{u.skillsOffered.length - 4}</span>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="w-full sm:w-auto">
-                      <div className="bg-black text-white px-8 py-3.5 rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 inline-block text-center w-full shadow-lg text-sm">
+                    <div className="w-full sm:w-auto flex-shrink-0">
+                      <div className="bg-black text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-lg font-bold hover:opacity-90 transition-all active:scale-95 text-center w-full shadow-lg text-sm">
                         View Profile
                       </div>
                     </div>
@@ -279,8 +292,8 @@ const Explore = () => {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-24 bg-[#F7F7F5] rounded-3xl border border-dashed border-gray-200">
-                <p className="text-xl text-gray-400 font-bold tracking-tight">No experts found matching your criteria.</p>
+              <div className="text-center py-16 sm:py-24 bg-[#F7F7F5] rounded-2xl sm:rounded-3xl border border-dashed border-gray-200">
+                <p className="text-lg sm:text-xl text-gray-400 font-bold tracking-tight">No experts found matching your criteria.</p>
                 <button onClick={() => {setSearch(''); setShowSmartMatches(false); setFilters({minRating: 0, hasCredits: false})}} className="mt-4 text-black underline font-bold text-sm">Reset all filters</button>
               </div>
             )}
@@ -292,4 +305,3 @@ const Explore = () => {
 };
 
 export default Explore;
-

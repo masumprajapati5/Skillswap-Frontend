@@ -40,16 +40,16 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white px-6 py-10 font-outfit">
-      <div className="max-w-[400px] w-full flex flex-col gap-10">
+    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center bg-white px-4 sm:px-6 py-8 sm:py-10 font-outfit">
+      <div className="max-w-[400px] w-full flex flex-col gap-8 sm:gap-10">
         <div className="text-center">
-          <h1 className="text-3xl font-bold mb-2 tracking-tight">Reset Password</h1>
-          <p className="text-gray-500">Enter your new secure password below.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2 tracking-tight">Reset Password</h1>
+          <p className="text-gray-500 text-sm sm:text-base">Enter your new secure password below.</p>
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5 sm:gap-6">
           <div className="flex flex-col gap-2">
-            <label className="text-[11px] text-gray-500 uppercase tracking-widest font-black">NEW PASSWORD</label>
+            <label className="text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest font-black">NEW PASSWORD</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -57,12 +57,12 @@ const ResetPassword = () => {
                 required
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full bg-white border border-black text-black px-5 py-3 rounded outline-none focus:border-2 placeholder:text-gray-400"
+                className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400"
               />
               <button 
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -75,7 +75,7 @@ const ResetPassword = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[11px] text-gray-500 uppercase tracking-widest font-black">CONFIRM PASSWORD</label>
+            <label className="text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest font-black">CONFIRM PASSWORD</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -83,12 +83,12 @@ const ResetPassword = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full bg-white border border-black text-black px-5 py-3 rounded outline-none focus:border-2 placeholder:text-gray-400"
+                className="w-full bg-white border border-black text-black px-4 sm:px-5 py-3 sm:py-3.5 rounded outline-none focus:border-2 placeholder:text-gray-400"
               />
               <button 
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -103,7 +103,7 @@ const ResetPassword = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-black text-white border border-black px-4 py-4 rounded text-base hover:bg-white hover:text-black transition-all active:scale-95 font-bold flex items-center justify-center gap-3 disabled:opacity-50"
+            className="bg-black text-white border border-black px-4 py-3 sm:py-4 rounded text-base hover:bg-white hover:text-black transition-all active:scale-95 font-bold flex items-center justify-center gap-3 disabled:opacity-50"
           >
             {loading && <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>}
             {loading ? "Resetting..." : "Reset Password"}

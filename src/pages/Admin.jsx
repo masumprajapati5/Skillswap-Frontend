@@ -185,28 +185,27 @@ const Admin = () => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-[200] flex flex-col items-center justify-center gap-8">
+        <div className="md:hidden fixed inset-0 bg-white z-[200] flex flex-col items-center justify-center gap-6 sm:gap-8">
           {menuItems.map(item => (
             <button 
               key={item.id} 
               onClick={() => { setActiveTab(item.id); setSearchTerm(''); setMobileMenuOpen(false); }}
-              className={`text-2xl text-black bg-transparent border-none ${activeTab === item.id ? 'font-bold' : ''}`}
+              className={`text-xl sm:text-2xl text-black bg-transparent border-none tap-target ${activeTab === item.id ? 'font-bold' : ''}`}
             >
               {item.label}
             </button>
           ))}
           <button 
             onClick={() => { setMobileMenuOpen(false); handleLogout(); }} 
-            className="text-2xl text-red-500 font-medium bg-transparent border-none"
+            className="text-xl sm:text-2xl text-red-500 font-medium bg-transparent border-none tap-target"
           >
             Log Out
           </button>
 
-          {/* Absolute Bottom Footer for Exit Admin */}
-          <div className="absolute bottom-0 left-0 w-full border-t border-gray-50 py-8 flex justify-center bg-white pb-12">
+          <div className="absolute bottom-0 left-0 w-full border-t border-gray-50 py-6 sm:py-8 flex justify-center bg-white pb-10 sm:pb-12">
             <button
               onClick={() => { setMobileMenuOpen(false); navigate('/'); }}
-              className="flex items-center gap-2 text-gray-400 hover:text-black transition-colors font-['Outfit'] text-[15px] font-medium"
+              className="flex items-center gap-2 text-gray-400 hover:text-black transition-colors font-['Outfit'] text-[14px] sm:text-[15px] font-medium tap-target"
             >
               <span className="text-xl leading-none mb-[2px]">←</span>
               Exit Admin
@@ -270,8 +269,8 @@ const Admin = () => {
       <div className="flex-1 flex flex-col min-w-0 h-auto md:h-screen overflow-y-auto">
 
         {/* Tab Title + Search */}
-        <div className="px-6 md:px-12 pt-12 md:pt-16 pb-6 md:pb-8 flex flex-col md:flex-row md:items-end justify-between flex-shrink-0 gap-4">
-          <h1 className="font-['Outfit'] font-medium text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] text-black tracking-tight">{activeTab === 'Overview' ? 'Dashboard' : activeTab === 'Library' ? 'Skills' : activeTab}</h1>
+        <div className="px-4 sm:px-6 md:px-12 pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 flex flex-col md:flex-row md:items-end justify-between flex-shrink-0 gap-4">
+          <h1 className="font-['Outfit'] font-medium text-[24px] sm:text-[28px] md:text-[36px] leading-[28px] sm:leading-[32px] md:leading-[40px] text-black tracking-tight">{activeTab === 'Overview' ? 'Dashboard' : activeTab === 'Library' ? 'Skills' : activeTab}</h1>
           <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
             {(activeTab === 'Users' || activeTab === 'Library' || activeTab === 'Sessions' || activeTab === 'Reviews') && (
               <input
@@ -291,22 +290,22 @@ const Admin = () => {
         </div>
 
         {/* Content */}
-        <main className="px-6 md:px-12 pb-16 pt-4 flex-1">
+        <main className="px-4 sm:px-6 md:px-12 pb-12 sm:pb-16 pt-4 flex-1">
 
           {/* ═══════ OVERVIEW ═══════ */}
           {activeTab === 'Overview' && (
             <div className="space-y-10">
               {/* Stats Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                 {[
                   { label: 'Total Users', value: stats.totalUsers || 0 },
                   { label: 'Total Skills', value: stats.totalSkills || 0 },
                   { label: 'Pending Sessions', value: stats.pendingSessions || 0 },
                   { label: 'Total Credits', value: (stats.totalCredits || 0).toLocaleString() },
                 ].map((s, i) => (
-                  <div key={i} className="bg-white p-8 border border-black rounded-lg flex flex-col gap-2">
-                    <p className="text-[11px] font-medium text-gray-500 uppercase tracking-widest mb-2">{s.label}</p>
-                    <p className="text-5xl font-semibold leading-none">{s.value}</p>
+                  <div key={i} className="bg-white p-4 sm:p-8 border border-black rounded-lg flex flex-col gap-2">
+                    <p className="text-[10px] sm:text-[11px] font-medium text-gray-500 uppercase tracking-widest mb-1 sm:mb-2">{s.label}</p>
+                    <p className="text-2xl sm:text-5xl font-semibold leading-none">{s.value}</p>
                   </div>
                 ))}
               </div>
