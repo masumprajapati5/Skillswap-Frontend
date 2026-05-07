@@ -7,7 +7,7 @@ import useAuthStore from '../store/authStore';
 const RequestSwap = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user: currentUser } = useAuthStore();
+  const { user: currentUser, loadUser } = useAuthStore();
   const [partner, setPartner] = useState(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -48,18 +48,22 @@ const RequestSwap = () => {
   };
 
   useEffect(() => {
-    const fetchPartner = async () => {
+    const fetchData = async () => {
       try {
-        const res = await usersAPI.getUser(id);
-        setPartner(res.data);
+        // Fetch both partner and ensure current user profile is fully loaded (populated skills)
+        const [partnerRes] = await Promise.all([
+          usersAPI.getUser(id),
+          loadUser()
+        ]);
+        setPartner(partnerRes.data);
       } catch (err) {
-        console.error('Failed to fetch partner', err);
+        console.error('Failed to fetch data', err);
       } finally {
         setLoading(false);
       }
     };
-    fetchPartner();
-  }, [id]);
+    fetchData();
+  }, [id, loadUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
