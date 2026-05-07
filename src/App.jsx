@@ -92,7 +92,7 @@ function App() {
       
       const playNotificationSound = () => {
         try {
-          const audio = new Audio('/notification tone.mp3');
+          const audio = new Audio('/notification.mp3');
           audio.volume = 0.5;
           audio.play().catch(e => console.log('Autoplay blocked or audio failed:', e));
         } catch (err) {
