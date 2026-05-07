@@ -13,7 +13,7 @@ const Auth = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setAuth } = useAuthStore();
+  const { login, register } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,20 +46,22 @@ const Auth = () => {
     }
 
     try {
-      const res = isLogin
-        ? await authAPI.login({ email: form.email, password: form.password })
-        : await authAPI.register(form);
+      const result = isLogin 
+        ? await login(form.email, form.password)
+        : await register(form.name, form.email, form.password);
 
-      setAuth(res.data.token, res.data.user);
-
-      if (res.data.user.role === 'admin') {
-        navigate('/admin');
+      if (result.success) {
+        if (result.user.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/dashboard');
+        }
       } else {
-        navigate('/dashboard');
+        toast.error(result.message);
       }
     } catch (err) {
       console.error(err);
-      toast.error(err.response?.data?.message || 'Something went wrong.');
+      toast.error('Something went wrong.');
     } finally {
       setLoading(false);
     }
