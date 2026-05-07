@@ -54,7 +54,8 @@ const Auth = () => {
         if (result.user.role === 'admin') {
           navigate('/admin');
         } else {
-          navigate('/dashboard');
+          // If just registered, go to profile edit to set up skills
+          navigate(isLogin ? '/dashboard' : '/profile/edit');
         }
       } else {
         toast.error(result.message);
