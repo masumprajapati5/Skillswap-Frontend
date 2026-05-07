@@ -35,6 +35,7 @@ const useAuthStore = create((set) => ({
         loading: false,
         error: null
       });
+      await useAuthStore.getState().loadUser();
       return { success: true, user };
     } catch (err) {
       const message = err.response?.data?.message || 'Invalid credentials';
@@ -62,6 +63,7 @@ const useAuthStore = create((set) => ({
         loading: false,
         error: null
       });
+      await useAuthStore.getState().loadUser();
       return { success: true, user };
     } catch (err) {
       const message = err.response?.data?.message || 'Registration failed';
