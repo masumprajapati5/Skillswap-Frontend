@@ -10,23 +10,32 @@ const useAuthStore = create((set) => ({
 
   setUser: (user) => set({ user, isAuthenticated: !!user, loading: false }),
   
+  setAuth: (token, user) => {
+    if (token) localStorage.setItem('token', token);
+    set({ token, user, isAuthenticated: !!user, loading: false });
+  },
+
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
       const res = await authAPI.login({ email, password });
       const data = res.data;
       
-      localStorage.setItem('token', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
+      // Handle both {token, user} and {accessToken, refreshToken, user} structures
+      const token = data.accessToken || data.token;
+      const user = data.user || data;
+
+      if (token) localStorage.setItem('token', token);
+      if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken);
       
       set({ 
-        user: data, 
-        token: data.accessToken, 
+        user, 
+        token, 
         isAuthenticated: true, 
         loading: false,
         error: null
       });
-      return { success: true, user: data };
+      return { success: true, user };
     } catch (err) {
       const message = err.response?.data?.message || 'Invalid credentials';
       set({ loading: false, error: message });
@@ -40,17 +49,20 @@ const useAuthStore = create((set) => ({
       const res = await authAPI.register({ name, email, password });
       const data = res.data;
 
-      localStorage.setItem('token', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
+      const token = data.accessToken || data.token;
+      const user = data.user || data;
+
+      if (token) localStorage.setItem('token', token);
+      if (data.refreshToken) localStorage.setItem('refreshToken', data.refreshToken);
 
       set({ 
-        user: data, 
-        token: data.accessToken, 
+        user, 
+        token, 
         isAuthenticated: true, 
         loading: false,
         error: null
       });
-      return { success: true, user: data };
+      return { success: true, user };
     } catch (err) {
       const message = err.response?.data?.message || 'Registration failed';
       set({ loading: false, error: message });
